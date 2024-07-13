@@ -4,7 +4,7 @@ from PIL import Image
 from io import BytesIO
 
 # New ngrok URL
-NGROK_URL = "https://93d5-123-231-111-80.ngrok-free.app/move_servos"
+NGROK_URL = "https://3576-2402-4000-21c3-5f1b-6ccc-703b-546c-d0fe.ngrok-free.app/move_servos"
 
 # Function to move the servos to random positions and capture an image
 def move_servos():
