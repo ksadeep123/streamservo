@@ -1,19 +1,21 @@
 import streamlit as st
 import requests
+from PIL import Image
+from io import BytesIO
 
-# ngrok URL (replace with your actual ngrok URL)
-NGROK_URL = "https://5a2f-2402-4000-20c1-fe90-15ed-4a89-8354-3e0.ngrok-free.app/move_servo"
+# New ngrok URL
+NGROK_URL = "https://93d5-123-231-111-80.ngrok-free.app/move_servos"
 
-# Function to move the servo to a random position
-def move_servo():
+# Function to move the servos to random positions and capture an image
+def move_servos():
     response = requests.post(NGROK_URL)
     if response.status_code == 200:
-        data = response.json()
-        st.write(data["message"])
+        img = Image.open(BytesIO(response.content))
+        st.image(img, caption="Captured Image", use_column_width=True)
     else:
-        st.error("Failed to move servo")
+        st.error("Failed to move servos or capture image")
 
 # Streamlit app interface
 st.title("Servo Motor Control")  # Title of the Streamlit app
-if st.button("Move Servo"):  # Button to trigger servo movement
-    move_servo()  # Call the function to move the servo
+if st.button("Take a pic"):  # Button to trigger servo movement
+    move_servos()  # Call the function to move the servos and capture image
